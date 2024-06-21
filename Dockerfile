@@ -1,4 +1,4 @@
-FROM hyperledger/sawtooth-python-sdk:chime
+FROM hyperledger/sawtooth-devmode:1.2
 
 RUN apt-get update && apt-get install -y \
     python3 \
