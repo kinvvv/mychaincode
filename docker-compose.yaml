@@ -1,0 +1,26 @@
+version: '2'
+services:
+  validator:
+    image: hyperledger/sawtooth-validator:chime
+    container_name: sawtooth-validator
+    ports:
+      - "4004:4004"
+  rest-api:
+    image: hyperledger/sawtooth-rest-api:chime
+    container_name: sawtooth-rest-api
+    ports:
+      - "8008:8008"
+    environment:
+      - VALIDATOR_TCP_ADDR=validator:4004
+  settings-tp:
+    image: hyperledger/sawtooth-settings-tp:chime
+    container_name: sawtooth-settings-tp
+    depends_on:
+      - validator
+    entrypoint: settings-tp -C tcp://validator:4004
+  xo-tp:
+    build: .
+    container_name: sawtooth-xo-tp
+    depends_on:
+      - validator
+    entrypoint: xo-tp-python -v -C tcp://validator:4004
