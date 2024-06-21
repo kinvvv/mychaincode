@@ -1,4 +1,4 @@
-FROM hyperledger/sawtooth-all:1.2
+FROM hyperledger/sawtooth-core:1.2
 
 RUN apt-get update && apt-get install -y \
     python3 \
