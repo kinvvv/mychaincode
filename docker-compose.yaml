@@ -23,4 +23,4 @@ services:
     container_name: sawtooth-xo-tp
     depends_on:
       - validator
-    entrypoint: xo-tp-python -v -C tcp://validator:4004
+    entrypoint: python3 processor.py -v -C tcp://validator:4004
